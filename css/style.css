@@ -1,0 +1,66 @@
+html, body, container {
+    height: 100%;
+}
+
+.sae-form{
+    width: 22rem;
+    min-width: 250px!important;
+}
+
+img.logo-form{
+    height: 7rem;
+    margin: 0 2.5% 20px 2.5%;
+    justify-content: center;
+   
+}
+
+.txt-sm{
+	font-size: 9pt;
+}
+
+.btn-sae{
+    background-color: #0484EB;
+    color: #fff;
+}
+
+.btn-sae-green{
+    background-color: #206868;
+    color: #fff;
+}
+
+.bg-sae{
+    background-color: #0484EB;
+}
+
+.bg-sae-dark{
+    background-color: #343434;
+}
+
+.bg-sae-green{
+    background-color: #206868;
+}
+
+.btn-sae:hover, .btn-sae-green:hover{
+    color: #fff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+#footer, #push {
+    height: 60px;
+    margin-top: 50px;
+}
+@media (max-width: 767px) {
+    #footer {
+	    margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
