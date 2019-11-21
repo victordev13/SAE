@@ -1,10 +1,15 @@
 <?php
 require'functions.php';
+require'classes/usuario.class.php';
+
 session_start();
     if(isset($_POST['login'])){
         if(!empty($_POST['usuario']) && !empty($_POST['senha'])){
             $usuario = tratarString($_POST['usuario']);
             $senha = tratarString($_POST['senha']);
+
+
+            Usuario::Login($usuario, $senha);
         }
     }
 ?>
