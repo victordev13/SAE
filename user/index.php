@@ -1,6 +1,6 @@
 <?php
 require_once'../functions.php';
-ValidaSessao("logado", 0);
+ValidaSessao("logado", 1);
 
 
 
