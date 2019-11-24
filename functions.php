@@ -23,3 +23,17 @@ function ValidaSessao($sessao, $nivelUsuario){
 		
 	}
 }
+
+function consultaSenhaCadastrada($user_id){
+	$connect = Conexao();
+	$sql = "SELECT senha FROM login_usuario WHERE id_usuario_fk = '$user_id'";
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		$dados = mysqli_fetch_array($resultado);
+		return $dados['0'];
+	}else{
+		return false;
+	}
+	FecharConexao($connect);
+}

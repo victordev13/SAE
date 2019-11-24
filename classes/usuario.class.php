@@ -1,5 +1,5 @@
 <?php
-require_once'db/db_connect.php';
+require_once'../db/db_connect.php';
 
 class Usuario {
     private $nome;
@@ -21,6 +21,7 @@ class Usuario {
             $_SESSION['usuario'] = $dados[1];
             $_SESSION['senha'] = $dados[2];
             $_SESSION['nivelAcesso'] = $dados[3];
+            $_SESSION['user_id'] = $dados['4'];
 
             if ($_SESSION['nivelAcesso'] == 0){
                 header("Location: admin/index.php");
@@ -54,9 +55,25 @@ class Usuario {
         FecharConexao($connect);
     }
 
+    public function AlterarSenha($senhaAntiga, $novaSenha, $user_id){
+        $connect = Conexao();
+
+        $sql = "UPDATE login_usuario SET senha='$novaSenha' WHERE id_usuario_fk='$user_id'";
+        $resultado = mysqli_query($connect, $sql)  or die(mysqli_error($connect));
+        
+        if($resultado){
+            return true;
+        }else{
+            return false;
+        }
+        FecharConexao($connect);
+    }
+    
     public function RecuperarSenha(){
 
     }
+
+
 }
 
 ?>
