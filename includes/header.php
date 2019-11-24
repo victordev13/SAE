@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador - SAE</title>
-    <link rel="shortcut icon" href="/SAE/img/sae.png"/>
+    <link rel="shortcut icon" href="/SAE/img/mouse-icon.png"/>
     <link rel="stylesheet" type="text/css" href="/SAE/css/bootstrap-reboot.css">
     <link rel="stylesheet" type="text/css" href="/SAE/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/SAE/css/style.css">
