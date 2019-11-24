@@ -1,5 +1,4 @@
 <?php
-require_once'../db/db_connect.php';
 
 class Usuario {
     private $nome;
@@ -31,7 +30,6 @@ class Usuario {
             
         }else{
             header('Location: index.php?erroLogin');
-
         }
         FecharConexao($conexao);
     }
@@ -73,6 +71,28 @@ class Usuario {
 
     }
 
+    public function BuscarPerfil($user_id){
+        $connect = Conexao();
+        $sql = "SELECT * FROM usuarios INNER JOIN login_usuario ON id_usuario = id_usuario_fk WHERE id_usuario = '$user_id';";
+        $resultado = mysqli_query($connect, $sql);
+        if($resultado){
+            while($row_perfil = mysqli_fetch_array($resultado)){
+                $perfil[] = $row_perfil['id_usuario'];
+                $perfil[] = $row_perfil['nome'];
+                $perfil[] = $row_perfil['email'];
+                $perfil[]= $row_perfil['usuario'];
+            }
+            if(!empty($perfil)){
+                return $perfil;
+            }
+        }else{
+            return false;
+        }
+        FecharConexao($connect);
+    }
+    public function Update(){
+
+    }
 
 }
 

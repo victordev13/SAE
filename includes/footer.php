@@ -1,7 +1,7 @@
 <div id="push"></div>
 <footer id="sticky-footer" class="fixed-bottom py-3 bg-dark">
     <div class="container text-center">
-      <span class="text-muted">&copy;Sistema de Agendamento de Equipamentos - 4° Período em Análise e Desenvolvimento de Sistemas - 2019</span>
+      <span class="text-muted">Sistema de Agendamento de Equipamentos &copy; 4° Período em Análise e Desenvolvimento de Sistemas - 2019</span>
     </div>
   </footer>
   </main>

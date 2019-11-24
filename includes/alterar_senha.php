@@ -37,12 +37,12 @@
 						}
 					}
                         if(!empty($erro)){
-                            echo "<div class='alert alert-danger alerta-sm' role='alert'>";
+                            echo "<div class='alert alert-danger txt-sm' role='alert'>";
 							echo $erro;
 							echo "</div>";
 						}
 						if(!empty($sucesso)){
-							echo "<div class='alert alert-success alerta-sm' role='alert'>";
+							echo "<div class='alert alert-success txt-sm' role='alert'>";
 							echo $sucesso;
 							echo "</div>";
 						}

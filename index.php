@@ -1,6 +1,7 @@
 <?php
 require_once'functions.php';
-require_once'classes/usuario.class.php';
+require_once __DIR__.'/classes/usuario.class.php';
+
 session_start();
 
     if(isset($_POST['login'])){
