@@ -12,15 +12,14 @@ if(isset($_POST['salvar'])){
     $email = tratarString($_POST['email']);
     $usuario =tratarString($_POST['usuario']);
     if(Usuario::Update($nome, $email, $usuario, $dados['0'])){
-        $_SESSION['sucesso'] = "Alterado com sucesso!";
+        $_SESSION['sucesso'] = "Perfil alterado com sucesso!";
         if($_SESSION['nivelAcesso'] == 0){
             header("Location: /SAE/admin/index.php");
         }else{
             header("Location: /SAE/user/index.php");
         }
-        
     }else{
-        $_SESSION['erro'] = "Erro ao alterar cadastro!";
+        $_SESSION['erro'] = "Erro ao alterar perfil!";
         if($_SESSION['nivelAcesso'] == 0){
             header("Location: /SAE/admin/index.php");
         }else{

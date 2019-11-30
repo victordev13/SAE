@@ -90,8 +90,18 @@ class Usuario {
         }
         FecharConexao($connect);
     }
-    public function Update(){
-
+    public function Update($nome, $email, $usuario, $user_id){
+        $connect = Conexao();
+	    $sql = "UPDATE usuarios SET nome='$nome', email='$email' WHERE id_usuario='$user_id';";
+	    $resultado = mysqli_query($connect, $sql);
+	    $sql = "UPDATE login_usuario SET usuario='$usuario' WHERE id_usuario_fk='$user_id';";
+	    $resultado = mysqli_query($connect, $sql);
+	    if($resultado){
+	    	return true;
+	    }else{ 
+	    	return false;
+	    }
+	    FecharConexao($connect);
     }
 
 }

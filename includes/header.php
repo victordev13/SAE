@@ -13,11 +13,23 @@
     <link rel="stylesheet" type="text/css" href="/SAE/css/bootstrap-reboot.css">
     <link rel="stylesheet" type="text/css" href="/SAE/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/SAE/css/style.css">
+    <!-- Full Calendar CSS -->
+    <link href='/SAE/css/fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='/SAE/css/fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <link href='/SAE/css/fullcalendar/timegrid/main.css' rel='stylesheet' />
+    <!-- Fim -->
     <script type="text/javascript" src="/SAE/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/SAE/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="/SAE/js/bootstrap.js"></script>
     <script type="text/javascript" src="/SAE/js/functions.js"></script>
     <script src="https://kit.fontawesome.com/33bf191c75.js" crossorigin="anonymous"></script>
+    <!-- Full Calendas JS -->
+    <script src='/SAE/js/fullcalendar/core/main.js'></script>
+    <script src='/SAE/js/fullcalendar/core/locales/pt-br.js'></script>
+    <script src='/SAE/js/fullcalendar/interaction/main.js'></script>
+    <script src='/SAE/js/fullcalendar/daygrid/main.js'></script>
+    <script src='/SAE/js/fullcalendar/timegrid/main.js'></script>
+    <!-- Fim -->
 </head>
 <body>
 <main>
@@ -27,31 +39,19 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-    <ul class="navbar-nav">~
-        <li class="nav-item">
-          <a class="nav-link" href="#">Agendar</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="Consultar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Consultar
-            </a>
-            <div class="dropdown-menu" aria-labelledby="Consultar">
-            <a class="dropdown-item" href="#">Equipamento</a>
-              <a class="dropdown-item" href="#">Categoria</a>
-              <a class="dropdown-item" href="#">Usuário</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="Cadastrar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Cadastrar
-            </a>
-            <div class="dropdown-menu" aria-labelledby="Cadastrar">
-              <a class="dropdown-item" href="#" id="equipamento">Equipamento</a>
-              <a class="dropdown-item" href="#" id="categoria">Categoria</a>
-              <a class="dropdown-item" href="#" id="usuario">Usuário</a>
-            </div>
-        </li>
+  <?php
+
+  if(isset($_SESSION['nivelAcesso'])){
+    if($_SESSION['nivelAcesso'] == 0){
+      include '../admin/menu.html';
+    }else if($_SESSION['nivelAcesso'] == 1){
+      include_once '../user/menu.html';
+    }else{
+      echo "Erro ao incluir o menu";
+    }
+  }
+    
+  ?>
         <li class="nav-item dropdown">
         <a class="nav-link" href="#" id="Perfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle fa-lg fa-w-16 text-light fa-2x"></i></a>
         <div class="dropdown-menu" aria-labelledby="Perfil">
