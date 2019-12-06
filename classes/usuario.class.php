@@ -5,6 +5,7 @@ class Usuario {
     private $usuario;
     private $senha;
     private $email;
+    private $nivelAcesso;
 
     public function Login($usuario, $senha){
 
@@ -34,9 +35,9 @@ class Usuario {
         FecharConexao($conexao);
     }
 
-    public function Cadastrar($nome, $email, $usuario, $senha){
+    public function Cadastrar($nome, $email, $usuario, $senha, $acesso){
         $connect = Conexao();
-        $nivelAcesso = 1;
+        $nivelAcesso = $acesso;
 		$sql = "INSERT INTO `usuarios` (nome, email) VALUES('$nome', '$email');";
 		$resultado = mysqli_query($connect, $sql);
 		$sql = "SET @funcionario_id = LAST_INSERT_ID();";
@@ -47,7 +48,7 @@ class Usuario {
 		if($resultado){
 			return true;
 		}else{
-			return $resultado;
+			return false;
         }
         
         FecharConexao($connect);
@@ -80,7 +81,8 @@ class Usuario {
                 $perfil[] = $row_perfil['id_usuario'];
                 $perfil[] = $row_perfil['nome'];
                 $perfil[] = $row_perfil['email'];
-                $perfil[]= $row_perfil['usuario'];
+                $perfil[] = $row_perfil['usuario'];
+                $perfil[] = $row_perfil['nivel_usuario'];
             }
             if(!empty($perfil)){
                 return $perfil;
@@ -94,7 +96,7 @@ class Usuario {
         $connect = Conexao();
 	    $sql = "UPDATE usuarios SET nome='$nome', email='$email' WHERE id_usuario='$user_id';";
 	    $resultado = mysqli_query($connect, $sql);
-	    $sql = "UPDATE login_usuario SET usuario='$usuario' WHERE id_usuario_fk='$user_id';";
+	    $sql = "UPDATE login_usuario SET usuario='$usuario' nivel_usuario='$acesso' WHERE id_usuario_fk='$user_id';";
 	    $resultado = mysqli_query($connect, $sql);
 	    if($resultado){
 	    	return true;
@@ -104,6 +106,33 @@ class Usuario {
 	    FecharConexao($connect);
     }
 
+    public function UpdatePerfil($nome, $email, $usuario, $acesso, $id){
+        $connect = Conexao();
+	    $sql = "UPDATE usuarios SET nome='$nome', email='$email' WHERE id_usuario='$id';";
+	    $resultado = mysqli_query($connect, $sql);
+	    $sql = "UPDATE login_usuario SET usuario='$usuario', nivel_usuario='$acesso' WHERE id_usuario_fk='$id';";
+	    $resultado = mysqli_query($connect, $sql);
+	    if($resultado){
+	    	return true;
+	    }else{ 
+	    	return $resultado;
+	    }
+	    FecharConexao($connect);
+    }
+
+    public function excluirUsuario($id){
+        $connect = Conexao();
+        $sql = "DELETE FROM login_usuario WHERE id_usuario_fk='$id';";
+        $resultado = mysqli_query($connect, $sql);
+        $sql = "DELETE FROM usuarios WHERE id_usuario='$id';";
+        $resultado = mysqli_query($connect, $sql);
+        if($resultado){
+            return true;
+        }else{ 
+            return false;
+        }
+        FecharConexao($connect);
+    }
 }
 
 ?>

@@ -40,18 +40,16 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <?php
-
   if(isset($_SESSION['nivelAcesso'])){
     if($_SESSION['nivelAcesso'] == 0){
-      include '../admin/menu.html';
+      include_once '../admin/menu.html';
     }else if($_SESSION['nivelAcesso'] == 1){
       include_once '../user/menu.html';
     }else{
       echo "Erro ao incluir o menu";
     }
   }
-    
-  ?>
+?>
         <li class="nav-item dropdown">
         <a class="nav-link" href="#" id="Perfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle fa-lg fa-w-16 text-light fa-2x"></i></a>
         <div class="dropdown-menu" aria-labelledby="Perfil">

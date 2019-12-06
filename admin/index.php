@@ -7,17 +7,17 @@ ValidaSessao("logado", 0);
 
 <div class="container mt-5">
     <?php
-        if(isset($_SESSION['erro'])){
+        if(isset($_GET['erro'])){
             echo "<div class='alert alert-danger alerta-sm' role='alert'>";
-            echo $_SESSION['erro'];
+            echo $_GET['erro'];
             echo "</div>";
-            unset($_SESSION['erro']);
+            unset($_GET['erro']);
         }
-        if(isset($_SESSION['sucesso'])){
+        if(isset($_GET['m'])){
             echo "<div class='alert alert-success alerta-sm' role='alert'>";
-            echo $_SESSION['sucesso'];
+            echo $_GET['m'];
             echo "</div>";
-            unset($_SESSION['sucesso']);
+            unset($_GET['m']);
         }
     ?>
     <div id='calendar'></div>   

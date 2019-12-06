@@ -10,8 +10,8 @@ session_start();
             $usuario = tratarString($_POST['usuario']);
             $senha = tratarString($_POST['senha']);
             $senha = md5($senha);
-
-            $cadastro = Usuario::Cadastrar($nome, $email, $usuario, $senha);
+            $acesso = intval(1);
+            $cadastro = Usuario::Cadastrar($nome, $email, $usuario, $senha, $acesso);
 
         }
     }
