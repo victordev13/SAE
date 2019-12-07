@@ -4,25 +4,13 @@
           <a class="nav-link" href="index.php">Início</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Novo agendamento</a>
+          <a class="nav-link" href="#" onclick="$('#agendamento').modal('show');">Novo agendamento</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="Consultar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Consultar
             </a>
             <div class="dropdown-menu" aria-labelledby="Consultar">
-            <a class="dropdown-item" href="#">Equipamento</a>
-              <a class="dropdown-item" href="#">Categoria</a>
-              <a class="dropdown-item" href="#">Usuário</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="Cadastrar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Cadastrar
-            </a>
-            <div class="dropdown-menu" aria-labelledby="Cadastrar">
-              <a class="dropdown-item" href="#" id="equipamento">Equipamento</a>
-              <a class="dropdown-item" href="#" id="categoria">Categoria</a>
-              <a class="dropdown-item" href="#" id="usuario">Usuário</a>
+            <a class="dropdown-item" href="/SAE/user/consulta_equipamento.php">Equipamento</a>
             </div>
         </li>
