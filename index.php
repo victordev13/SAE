@@ -71,8 +71,6 @@ session_start();
                         <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha" required="" minlength=6 maxlength=12>
                     </div>
                     <button type="submit" class="btn btn-lg btn-block btn-primary" name="login">Login</button>
-                    
-                    <a href="recuperar_senha.php" class="txt-sm float-center">Esqueceu a senha?</a><br><br>
                     <p>Não tem uma conta?<a href="cadastro.php" class="mt-3"> Cadastre-se</a></p>
                 </form>
             </div>
