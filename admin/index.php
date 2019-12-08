@@ -3,6 +3,10 @@ require_once'../functions.php';
 require_once'../includes/header.php';
 ValidaSessao("logado", 0);
 
+
+if(isset($_POST[])){
+  
+}
 ?>
 <!--Formulario de agendamento -->
 <div class="modal" tabindex="-1" role="dialog" id="agendamento">
@@ -18,18 +22,46 @@ ValidaSessao("logado", 0);
         <div class="modal-body">
       <div class="form-row">
         <div class="col">
-          <label for="inputEmail4">Título</label>
-          <input type="text" class="form-control" placeholder="First name">
+          <label for="user">Usuário</label>
+          <input type="text" class="form-control" id="user" value="<?php echo $_SESSION['usuario'] ?>" disabled="">
         </div>
         <div class="col">
-          <label for="inputEmail4">Email</label>
-          <input type="text" class="form-control" placeholder="Last name">
+          <label for="data">Data</label>
+          <input type="date" class="form-control" id="data" disabled="">
         </div>
       </div>
+      <div class="form-row mt-3">
+        <div class="col">
+          <label for="equipamento">Equipamento</label>
+          <select id="equipamento" class="form-control" name="equipamento" required="">
+             <option value='1'>Datashow</option>
+          </select>
         </div>
+        </div>
+       <div class="form-row mt-3">
+        <div class="col">
+          <label for="inicio">Inicio</label>
+          <select id="inicio" class="form-control" name="inicio" required="">
+             <option value='1'>Aula 1</option>
+             <option value='2'>Aula 2</option>
+             <option value='3'>Aula 3</option>
+             <option value='4'>Aula 4</option>
+          </select>
+        </div>
+          <div class="col">
+            <label for="fim">Fim</label>
+            <select id="fim" class="form-control" name="fim" required="">
+              <option value='1'>Aula 1</option>
+              <option value='2'>Aula 2</option>
+              <option value='3'>Aula 3</option>
+              <option value='4'>Aula 4</option>
+            </select>
+          </div>
+        </div>
+      </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Agendar</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" name="agendar">Agendar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       </form>
     </div>
@@ -58,19 +90,20 @@ ValidaSessao("logado", 0);
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
     locale: 'pt-br',
+    timeZone: 'UTC',
       plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      defaultDate: '2019-08-12',
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectMirror: true,
       select: function(arg) {
         //****************Ao clicar na data ativa o popup Bootstrap e alimenta o campo de data
         $('#agendamento').modal('show');
+        $('#data').val(arg.startStr);
         //******************************PEGAR DATA DA VARIAVEL arg.start  E INSERIR NO FORMULARIO DO BOOTSTRAP.
         
         /*var title = prompt('Título do Evento:');

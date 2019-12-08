@@ -8,7 +8,6 @@ class Usuario {
     private $nivelAcesso;
 
     public function Login($usuario, $senha){
-
         $conexao = Conexao();
 
         $sql = "SELECT * FROM login_usuario WHERE usuario = '$usuario' AND senha = '$senha'";
