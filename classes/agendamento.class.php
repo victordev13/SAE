@@ -8,23 +8,23 @@ class Agendamento
 	Aula final
 		select de 1 a 4
 	*/
-	private $aula1 = "19:00";
-	private $aula2 = "19:40";
-	private $aula3 = "20:40";
-	private $aula4 = "22:00";
+	private $aula1 = 1;
+	private $aula2 = 2;
+	private $aula3 = 3;
+	private $aula4 = 4;
 
-	private $aula_inicio;
-	private $aula_fim;
+	private $inicio;
+	private $fim;
 	private $usuario;
 	private $data;
 	
 	function __construct(){
 	}
 
-	function Cadastrar($data, $usuario, $aula_inicio, $aula_fim){
+	function Cadastrar($usuario, $data, $equipamento, $inicio, $fim, $observacao){
 		$connect = Conexao();
-		$sql = "";
-		$resultado = "";
+		$sql = "INSERT INTO `agendamento`(`usuario`, `data`, `equipamento`, `inicio`, `fim`, `observacao`) VALUES ('$usuario', '$data','$equipamento','$inicio', '$fim', '$observacao')";
+		$resultado = mysqli_query($connect, $sql);
 
 		if($resultado){
 			return true;
@@ -32,7 +32,7 @@ class Agendamento
 			return false;
 		}
 		FecharConexao($connect);
-	};
+	}
 
 	function Update(){
 		$connect = Conexao();

@@ -59,3 +59,6 @@ function BuscarUsuario(){
 		return false;
 	}
 }
+function BuscarAgendamentos(){
+
+}

@@ -1,11 +1,26 @@
 <?php
 require_once'../functions.php';
 require_once'../includes/header.php';
+require_once'../classes/agendamento.class.php';
 ValidaSessao("logado", 0);
 
 
 if(isset($_POST)){
-  
+  if(isset($_POST['agendar'])){
+    $usuario = $_SESSION['usuario'];
+    $data = tratarString($_POST['data']);
+    $equipamento = tratarString($_POST['equipamento']);
+    $inicio = tratarString($_POST['inicio']);
+    $fim = tratarString($_POST['fim']);
+    $observacao = tratarString($_POST['observacao']);
+
+    $cadastro = Agendamento::Cadastrar($usuario, $data, $equipamento, $inicio, $fim, $observacao);
+    if($cadastro){
+      
+    }else{
+      
+    }
+  }
 }
 ?>
 <!--Formulario de agendamento -->
@@ -23,17 +38,18 @@ if(isset($_POST)){
       <div class="form-row">
         <div class="col">
           <label for="user">Usuário</label>
-          <input type="text" class="form-control" id="user" value="<?php echo $_SESSION['usuario'] ?>" disabled="">
+          <input type="text" class="form-control" id="user" name="user" value="<?php echo $_SESSION['usuario'] ?>" readonly="">
         </div>
         <div class="col">
           <label for="data">Data</label>
-          <input type="date" class="form-control" id="data" disabled="">
+          <input type="date" class="form-control" id="data" name="data" readonly="">
         </div>
       </div>
       <div class="form-row mt-3">
         <div class="col">
           <label for="equipamento">Equipamento</label>
           <select id="equipamento" class="form-control" name="equipamento" required="">
+            <option>Selecione...</option>
              <option value='0'>Datashow</option>
              <option value='1'>Notebook</option>
              <option value='2'>Caixa de Som</option>
@@ -59,6 +75,12 @@ if(isset($_POST)){
               <option value='4'>Aula 4</option>
             </select>
           </div>
+        </div>
+        <div class="form-row mt-3">
+        <div class="col">
+          <label for="observacao">Observação</label>
+          <textarea class="form-control" id="observacao" name="observacao" rows="1"></textarea>
+        </div>
         </div>
       </div>
         <div class="modal-footer">
