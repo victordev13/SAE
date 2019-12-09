@@ -66,10 +66,6 @@ class Usuario {
         }
         FecharConexao($connect);
     }
-    
-    public function RecuperarSenha(){
-
-    }
 
     public function BuscarPerfil($user_id){
         $connect = Conexao();
@@ -119,7 +115,7 @@ class Usuario {
 	    FecharConexao($connect);
     }
 
-    public function excluirUsuario($id){
+    public function ExcluirUsuario($id){
         $connect = Conexao();
         $sql = "DELETE FROM login_usuario WHERE id_usuario_fk='$id';";
         $resultado = mysqli_query($connect, $sql);

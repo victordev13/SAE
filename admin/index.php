@@ -4,7 +4,7 @@ require_once'../includes/header.php';
 ValidaSessao("logado", 0);
 
 
-if(isset($_POST[])){
+if(isset($_POST)){
   
 }
 ?>
@@ -34,7 +34,9 @@ if(isset($_POST[])){
         <div class="col">
           <label for="equipamento">Equipamento</label>
           <select id="equipamento" class="form-control" name="equipamento" required="">
-             <option value='1'>Datashow</option>
+             <option value='0'>Datashow</option>
+             <option value='1'>Notebook</option>
+             <option value='2'>Caixa de Som</option>
           </select>
         </div>
         </div>

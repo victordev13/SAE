@@ -105,7 +105,7 @@
 if(isset($_GET['excluir'])){
     $id = intval($_GET['excluir']);
 
-    if(Usuario::excluirUsuario($id)){
+    if(Usuario::ExcluirUsuario($id)){
       $_SESSION['m'] = "Usuário excluído com sucesso!";
     }else{
       $_SESSION['erro'] = "Erro ao excluir aluno!";
