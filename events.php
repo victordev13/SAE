@@ -2,7 +2,7 @@
 require_once'db/db_connect.php';
 
 	$connect = Conexao();
-	$sql = "SELECT `data`, u.nome, CONCAT(c.nome, e.cod) As equipamento, i.inicio, f.fim FROM `agendamento` A INNER JOIN horario_aula i ON i.aula = a.inicio INNER JOIN horario_aula f ON f.aula = a.fim INNER JOIN equipamento E ON equipamento = id_equipamento INNER JOIN usuarios U ON usuario = id_usuario INNER JOIN categoria C ON c.id_equipamento = e.categoria;";
+	$sql = "SELECT a.`data`, u.nome, CONCAT(c.nome, e.cod) As equipamento, i.inicio, f.fim FROM `agendamento` A INNER JOIN horario_aula i ON i.aula = a.inicio INNER JOIN horario_aula f ON f.aula = a.fim INNER JOIN equipamento E ON equipamento = id_equipamento INNER JOIN usuarios U ON usuario = id_usuario INNER JOIN categoria C ON c.id_categoria = e.categoria;";
 	
 	$resultado = mysqli_query($connect, $sql);
 

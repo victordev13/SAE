@@ -37,7 +37,7 @@ if(isset($_SESSION['sucesso'])){
     unset($_SESSION['sucesso']);
 }
 ?>
-<form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" id="cadastrarAluno">
+<form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" id="cadastrarUsuario">
   <div class="form-row">
     <div class="form-group col">
       <label for="nome">Nome</label>
@@ -59,7 +59,7 @@ if(isset($_SESSION['sucesso'])){
       <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" minlength=6 required="">
     </div>
     <div class="form-group col-md-4">
-      <label for="curso">Nível de Acesso</label>
+      <label for="acesso">Nível de Acesso</label>
       <select id="acesso" class="form-control" name="acesso" required="">
         <option value='0'>Administrador</option>
         <option value='1' selected>Padrão</option>

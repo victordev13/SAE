@@ -151,7 +151,7 @@ if(isset($_POST)){
     },
     editable: false,
     eventLimit: true, 
-    textColor: 'white',
+    textColor: '#ffffff',
     events: '../events.php'
   });
 

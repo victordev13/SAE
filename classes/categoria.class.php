@@ -1,24 +1,20 @@
 <?php
+require_once'../functions.php';
 
-class Agendamento
+class Categoria
 {
-
-	private $aula1 = 1;
-	private $aula2 = 2;
-	private $aula3 = 3;
-	private $aula4 = 4;
-
-	private $inicio;
-	private $fim;
-	private $usuario;
-	private $data;
+	
+	private $nome;
+	private $periodo_manutencao;
 	
 	function __construct(){
+		
 	}
 
-	function Cadastrar($user_id, $data, $equipamento, $inicio, $fim, $observacao){
+	function Cadastrar($nome, $periodo_manutencao){
 		$connect = Conexao();
-		$sql = "INSERT INTO `agendamento`( `id_agendamento`, `usuario`, `data`, `equipamento`, `inicio`, `fim`, `observacao`) VALUES (NULL, '$user_id','$data', '$equipamento','$inicio', '$fim', '$observacao')";
+
+		$sql = "INSERT INTO `categoria`(`nome`, `periodo_manutencao`) VALUES ('$nome','$periodo_manutencao')";
 		$resultado = mysqli_query($connect, $sql);
 
 		if($resultado){
@@ -26,6 +22,7 @@ class Agendamento
 		}else{
 			return $sql;
 		}
+		
 		FecharConexao($connect);
 	}
 
@@ -55,4 +52,5 @@ class Agendamento
 		FecharConexao($connect);
 	}
 
+	
 }

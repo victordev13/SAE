@@ -65,16 +65,12 @@ function BuscarAgendamentos(){
 	$resultado = mysqli_query($connect, $sql);
 	if($resultado){
 		while($row_dados = mysqli_fetch_array($resultado)){
-			$title = strtok($row_dados['nome'], " ")." - ".$row_dados['equipamento'];
-			$inicio = $row_dados['inicio'];
+			$dados[] = strtok($row_dados['nome'], " ")." - ".$row_dados['equipamento'];
+			$dados[] = $row_dados['inicio'];
 			$dados[] = $row_dados['fim'];
 			$dados[] = $row_dados['id_agendamento'];
 			$dados[] = $row_dados['data'];
 			$dados[] = $row_dados['observacao'];
-
-			$eventos[] = [
-				'title' => $title,
-			];
 		}
 		if(!empty($dados)){
 			return $dados;
@@ -84,3 +80,36 @@ function BuscarAgendamentos(){
 
 	}
 }
+
+function BuscarEquipamentos(){
+	$connect = Conexao();
+	$sql = "SELECT nome FROM categoria;";
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		while($row_dados = mysqli_fetch_array($resultado)){
+			$dados[] = $row_dados['nome'];
+		}
+		return $dados;
+	}else{
+		return false;
+	}
+	FecharConexao($connect);
+}
+
+function BuscarIdEquipamentos(){
+	$connect = Conexao();
+	$sql = "SELECT id_categoria FROM categoria;";
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		while($row_dados = mysqli_fetch_array($resultado)){
+			$dados[] = $row_dados['id_categoria'];
+		}
+		return $dados;
+	}else{
+		return false;
+	}
+	FecharConexao($connect);
+}
+
