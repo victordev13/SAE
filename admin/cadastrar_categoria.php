@@ -10,13 +10,11 @@
             $periodo_manutencao = tratarString($_POST['periodo_manutencao']);
             $cadastro = Categoria::Cadastrar($nome, $periodo_manutencao);
 
-            print_r($cadastro);
             if($cadastro){
                 $_SESSION['sucesso'] = "Equipamento cadastrado com sucesso!";
               }else{
                 $_SESSION['erro'] = "Ocorreu um erro ao cadastrar o equipamento!\n Erro: {$cadastro}";
-              }
-              
+              }  
         }   
     }
 ?>
