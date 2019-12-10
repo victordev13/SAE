@@ -7,21 +7,22 @@ ValidaSessao("logado", 0);
 
 if(isset($_POST)){
   if(isset($_POST['agendar'])){
-    $usuario = $_SESSION['usuario'];
+    $user_id = $_SESSION['user_id'];
     $data = tratarString($_POST['data']);
     $equipamento = tratarString($_POST['equipamento']);
-    $inicio = tratarString($_POST['inicio']);
-    $fim = tratarString($_POST['fim']);
+    $inicio = intval(tratarString($_POST['inicio']));
+    $fim = intval(tratarString($_POST['fim']));
     $observacao = tratarString($_POST['observacao']);
 
-    $cadastro = Agendamento::Cadastrar($usuario, $data, $equipamento, $inicio, $fim, $observacao);
+    $cadastro = Agendamento::Cadastrar($user_id, $data, $equipamento, $inicio, $fim, $observacao);
     if($cadastro){
-      
+      $_SESSION['sucesso'] = "Equipamento agendado!";
     }else{
-      
+      $_SESSION['erro'] = "Erro ao agendar equipamento";
     }
   }
 }
+
 ?>
 <!--Formulario de agendamento -->
 <div class="modal" tabindex="-1" role="dialog" id="agendamento">
@@ -50,9 +51,9 @@ if(isset($_POST)){
           <label for="equipamento">Equipamento</label>
           <select id="equipamento" class="form-control" name="equipamento" required="">
             <option>Selecione...</option>
-             <option value='0'>Datashow</option>
-             <option value='1'>Notebook</option>
-             <option value='2'>Caixa de Som</option>
+             <option value='1'>Datashow</option>
+             <option value='2'>Notebook</option>
+             <option value='3'>Caixa de Som</option>
           </select>
         </div>
         </div>
@@ -106,6 +107,18 @@ if(isset($_POST)){
             echo "</div>";
             unset($_GET['m']);
         }
+        if(isset($_SESSION['erro'])){
+            echo "<div class='alert alert-danger alerta-sm' role='alert'>";
+            echo $_SESSION['erro'];
+            echo "</div>";
+            unset($_SESSION['erro']);
+        }
+        if(isset($_SESSION['sucesso'])){
+            echo "<div class='alert alert-success alerta-sm' role='alert'>";
+            echo $_SESSION['sucesso'];
+            echo "</div>";
+            unset($_SESSION['sucesso']);
+        }
     ?>
     <div id='calendar'></div>   
 </div>
@@ -113,99 +126,38 @@ if(isset($_POST)){
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
+
     locale: 'pt-br',
     timeZone: 'UTC',
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectMirror: true,
-      select: function(arg) {
-        //****************Ao clicar na data ativa o popup Bootstrap e alimenta o campo de data
-        $('#agendamento').modal('show');
-        $('#data').val(arg.startStr);
-        //******************************PEGAR DATA DA VARIAVEL arg.start  E INSERIR NO FORMULARIO DO BOOTSTRAP.
-        
-        /*var title = prompt('Título do Evento:');
-        var form = 1;
-        //exibir popup com formulario onde os campos serão pegos por POST e enviados para o banco de dados, ao recarregar a página serão buscados e exibidos
-        if (form) {
-          calendar.addEvent({
-            title: "teste",
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
-        }
-        */
-        calendar.unselect()
-      },
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2019-08-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2019-08-07',
-          end: '2019-08-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2019-08-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2019-08-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2019-08-11',
-          end: '2019-08-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2019-08-12T10:30:00',
-          end: '2019-08-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2019-08-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2019-08-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2019-08-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2019-08-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2019-08-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2019-08-28'
-        }
-      ]
-    });
+    plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+    eventClick: function(info) {
+      var eventObj = info.event;
+      //alert('Agendamento clicado ' + eventObj.title + '.\n');
+    },
+    header: {
+     left: 'prev,next today',
+     center: 'title',
+     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+
+    navLinks: true, // can click day/week names to navigate views
+    selectable: true,
+    selectMirror: true,
+    select: function(arg) {
+      //****************Ao clicar na data ativa o popup Bootstrap e alimenta o campo de data
+      $('#agendamento').modal('show');
+      $('#data').val(arg.startStr);
+      calendar.unselect()
+    },
+    editable: false,
+    eventLimit: true, 
+    textColor: 'white',
+    events: '../events.php'
+  });
 
     calendar.render();
   });
+
 
 </script>
 <?php

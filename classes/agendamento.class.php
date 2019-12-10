@@ -2,12 +2,7 @@
 
 class Agendamento
 {
-	/*
-	Aula inicio
-		select de 1 a 4
-	Aula final
-		select de 1 a 4
-	*/
+
 	private $aula1 = 1;
 	private $aula2 = 2;
 	private $aula3 = 3;
@@ -21,15 +16,15 @@ class Agendamento
 	function __construct(){
 	}
 
-	function Cadastrar($usuario, $data, $equipamento, $inicio, $fim, $observacao){
+	function Cadastrar($user_id, $data, $equipamento, $inicio, $fim, $observacao){
 		$connect = Conexao();
-		$sql = "INSERT INTO `agendamento`(`usuario`, `data`, `equipamento`, `inicio`, `fim`, `observacao`) VALUES ('$usuario', '$data','$equipamento','$inicio', '$fim', '$observacao')";
+		$sql = "INSERT INTO `agendamento`( `id_agendamento`, `usuario`, `data`, `equipamento`, `inicio`, `fim`, `observacao`) VALUES (NULL, '$user_id','$data', '$equipamento','$inicio', '$fim', '$observacao')";
 		$resultado = mysqli_query($connect, $sql);
 
 		if($resultado){
 			return true;
 		}else{
-			return false;
+			return $sql;
 		}
 		FecharConexao($connect);
 	}
