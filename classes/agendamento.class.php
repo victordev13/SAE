@@ -3,11 +3,6 @@
 class Agendamento
 {
 
-	private $aula1 = 1;
-	private $aula2 = 2;
-	private $aula3 = 3;
-	private $aula4 = 4;
-
 	private $inicio;
 	private $fim;
 	private $usuario;
