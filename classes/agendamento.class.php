@@ -19,7 +19,7 @@ class Agendamento
 		if($resultado){
 			return true;
 		}else{
-			return $sql;
+			return false;
 		}
 		FecharConexao($connect);
 	}

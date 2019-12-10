@@ -29,7 +29,7 @@ require_once '../includes/header.php';
 
 ?>
 <div class="container mt-3 col-md-6">
-<h2>Editar aluno</h2>
+<h2>Editar usuário</h2>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" id="editarUsuario">
 <input type="hidden" name="id" id="id" value=<?php if(isset($_GET['id'])){echo $_GET['id'];}?>>
   <div class="form-row">
